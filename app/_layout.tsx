@@ -32,10 +32,10 @@ export default function RootLayout() {
     envId="cimqt0uqvn36gba8e4b0"
     apiKey="fzGFlVlcAWBjKJAAAXcPfSQcAHHQkqJekDprRisp"
     visitorData={{
-      id: '',
+      id: ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c => (c ^ Math.random() * 16 >> c / 4).toString(16)), // Leave the field blank with '', and AB Tasty will generate a persistent ID for the user automatically
       hasConsented: true, // This is required
       context: {
-        key:"value"
+        user: "returning"
       },
     }}
     >

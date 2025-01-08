@@ -7,7 +7,7 @@ const FlightSearch = () => {
   const flagSeatRemainingVal = useFsFlag("flagSeatRemaining");
   const flagSeatRemaining = flagSeatRemainingVal.getValue(false);
   const flagSeatRemainingMessageColorVal = useFsFlag("flagSeatRemainingMessageColor");
-  const flagSeatRemainingMessageColor = flagSeatRemainingMessageColorVal.getValue('red');
+  const flagSeatRemainingMessageColor = flagSeatRemainingMessageColorVal.getValue('black');
   const flagPercentageDiscountVal = useFsFlag("flagPercentageDiscount");
   const flagPercentageDiscount = flagPercentageDiscountVal.getValue(0);
 
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   searchButton: {
-    backgroundColor: '#1E90FF',
+    backgroundColor: 'blue',
     paddingVertical: 14,
     borderRadius: 8,
     marginTop: 20,
