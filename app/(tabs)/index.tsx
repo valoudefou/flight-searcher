@@ -57,7 +57,7 @@ const FlightSearch = () => {
   const handleSearchAgain = () => {
     setFlightData([]);
   };
-console.log(flagPercentageDiscount)
+
   const onDateChange = (event, selectedDate, type) => {
     const currentDate = selectedDate || new Date();
     if (type === 'outbound') {
