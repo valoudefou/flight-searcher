@@ -26,7 +26,7 @@ export default function RootLayout() {
   if (!loaded) {
     return null; // Wait until fonts are loaded
   }
-
+  console.log('test');
   return (
     <FlagshipProvider
     envId="cimqt0uqvn36gba8e4b0"
