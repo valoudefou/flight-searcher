@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, ActivityIndicator, Keyboard } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useFsFlag } from "@flagship.io/react-native-sdk";
+
+// Define the Flight interface
+interface Flight {
+  id: number;
+  airline: string;
+  price: string;
+  departure: string;
+  return: string;
+  remainingSeats?: number;  // optional property
+  discounted?: boolean; // optional flag for discounted price
+}
 
 const FlightSearch = () => {
   const flagSeatRemainingVal = useFsFlag("flagSeatRemaining");
   const flagSeatRemaining = flagSeatRemainingVal.getValue(false);
   const flagSeatRemainingMessageColorVal = useFsFlag("flagSeatRemainingMessageColor");
-  const flagSeatRemainingMessageColor = flagSeatRemainingMessageColorVal.getValue('black');
+  const flagSeatRemainingMessageColor = flagSeatRemainingMessageColorVal.getValue('blue');
   const flagPercentageDiscountVal = useFsFlag("flagPercentageDiscount");
   const flagPercentageDiscount = flagPercentageDiscountVal.getValue(0);
 
@@ -15,12 +26,12 @@ const FlightSearch = () => {
   const [destination, setDestination] = useState('PAR');
   const [outboundDate, setOutboundDate] = useState('');
   const [returnDate, setReturnDate] = useState('');
-  const [flightData, setFlightData] = useState([]);
+  const [flightData, setFlightData] = useState<Flight[]>([]); // State initialized with Flight[] type
   const [loading, setLoading] = useState(false);
   const [showOutboundDatePicker, setShowOutboundDatePicker] = useState(true);
   const [showReturnDatePicker, setShowReturnDatePicker] = useState(true);
 
-  const fakeFlightData = [
+  const fakeFlightData: Flight[] = [ // Added type annotation to fakeFlightData
     { id: 1, airline: 'Ryanair', price: '$500', departure: '2025-01-04 10:00 AM', return: '2025-01-06 12:00 PM', remainingSeats: 2 },
     { id: 2, airline: 'Air Canada', price: '$550', departure: '2025-01-04 02:00 PM', return: '2025-01-06 04:00 PM', remainingSeats: 7 },
     { id: 3, airline: 'Air France', price: '$600', departure: '2025-01-04 06:00 PM', return: '2025-01-06 08:00 PM', remainingSeats: 7 },
@@ -58,7 +69,7 @@ const FlightSearch = () => {
     setFlightData([]);
   };
 
-  const onDateChange = (event, selectedDate, type) => {
+  const onDateChange = (event: DateTimePickerEvent, selectedDate: Date | undefined, type: string) => {
     const currentDate = selectedDate || new Date();
     if (type === 'outbound') {
       setOutboundDate(currentDate.toISOString().split('T')[0]);
@@ -78,7 +89,7 @@ const FlightSearch = () => {
           renderItem={({ item }) => (
             <View style={styles.flightItem}>
               <Text style={styles.flightTitle}>{item.airline}</Text>
-  
+
               <View style={styles.priceContainer}>
                 {item.discounted && (
                   <Text style={[styles.flightPrice, styles.strikeThrough]}>
@@ -89,13 +100,13 @@ const FlightSearch = () => {
                   {item.discounted ? `$${(parseFloat(item.price.slice(1)) * flagPercentageDiscount).toFixed(2)}` : item.price}
                 </Text>
               </View>
-  
+
               {flagPercentageDiscount !== 0 && item.remainingSeats && item.remainingSeats <= 2 && (
                 <Text style={[styles.seatsLeftLabel, { color: flagSeatRemainingMessageColor }]}>
                   {item.remainingSeats} seats left at this price!
                 </Text>
               )}
-  
+
               <Text style={styles.flightDetails}>Departure: {item.departure}</Text>
               <Text style={styles.flightDetails}>Return: {item.return}</Text>
             </View>
@@ -190,120 +201,91 @@ const styles = StyleSheet.create({
     paddingTop: 80,
     paddingLeft: 20,
     paddingRight: 20,
-    backgroundColor: '#f4f4f9',
+    backgroundColor: '#f9f9f9',
   },
   title: {
-    fontSize: 28,
+    fontSize: 30,
     fontWeight: 'bold',
+    marginBottom: 30,
     textAlign: 'center',
-    marginBottom: 20,
-    color: '#333',
   },
   input: {
-    height: 50,
-    borderColor: '#ccc',
+    height: 40,
+    borderColor: '#ddd',
     borderWidth: 1,
-    marginBottom: 15,
-    paddingLeft: 15,
-    borderRadius: 8,
-    backgroundColor: '#fff',
-    fontSize: 16,
+    marginBottom: 20,
+    paddingLeft: 10,
+    borderRadius: 4,
   },
   dateContainer: {
-    marginBottom: 15,
+    marginBottom: 20,
   },
   dateLabel: {
     fontSize: 16,
-    color: '#333',
     marginBottom: 5,
-  },
-  priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  
-  flightPrice: {
-    fontSize: 16,
-    color: '#1E90FF',
-    marginVertical: 5,
-  },
-  
-  strikeThrough: {
-    textDecorationLine: 'line-through',
-    color: '#888',  // Light grey color for the old price
-    marginRight: 5,
-  },
-  
-  seatsLeftLabel: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginVertical: 5,
   },
   dateButton: {
-    backgroundColor: '#32CD32',
-    paddingVertical: 12,
-    paddingHorizontal: 15,
-    borderRadius: 8,
-    marginBottom: 5,
+    padding: 10,
+    backgroundColor: '#4caf50',
+    borderRadius: 4,
+    marginBottom: 10,
   },
   dateButtonText: {
     color: '#fff',
     fontSize: 16,
-    textAlign: 'center',
   },
   searchButton: {
-    backgroundColor: 'blue',
-    paddingVertical: 14,
-    borderRadius: 8,
-    marginTop: 20,
+    backgroundColor: '#007bff',
+    padding: 10,
+    borderRadius: 4,
+    alignItems: 'center',
   },
   searchButtonText: {
     color: '#fff',
     fontSize: 18,
-    textAlign: 'center',
-    fontWeight: 'bold',
   },
   searchAgainButton: {
-    paddingVertical: 16,
-    borderRadius: 8,
-    borderColor: '#FF4500',
-    borderWidth: 2,
-    alignSelf: 'stretch', 
     marginTop: 20,
-    marginBottom: 150,
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 4,
+    alignItems: 'center',
   },
   searchAgainButtonText: {
+    color: '#007bff',
     fontSize: 18,
-    textAlign: 'center',
-    fontWeight: 600,
-  },
-  loading: {
-    marginTop: 20,
   },
   flightItem: {
+    marginBottom: 20,
     backgroundColor: '#fff',
-    padding: 15,
-    marginBottom: 15,
     borderRadius: 8,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    padding: 15,
     elevation: 2,
   },
   flightTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+  },
+  priceContainer: {
+    flexDirection: 'row',
+    marginVertical: 10,
   },
   flightPrice: {
     fontSize: 16,
-    color: '#1E90FF',
-    marginVertical: 5,
+    fontWeight: 'bold',
+    marginRight: 10,
+  },
+  strikeThrough: {
+    textDecorationLine: 'line-through',
+    color: '#d3d3d3',
+  },
+  seatsLeftLabel: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   flightDetails: {
     fontSize: 14,
-    color: '#555',
+    marginTop: 5,
   },
 });
 

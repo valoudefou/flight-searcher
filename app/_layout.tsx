@@ -26,13 +26,17 @@ export default function RootLayout() {
   if (!loaded) {
     return null; // Wait until fonts are loaded
   }
-  console.log('test');
+  
   return (
     <FlagshipProvider
     envId="cimqt0uqvn36gba8e4b0"
     apiKey="fzGFlVlcAWBjKJAAAXcPfSQcAHHQkqJekDprRisp"
     visitorData={{
-      id: ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c => (c ^ Math.random() * 16 >> c / 4).toString(16)), // Leave the field blank with '', and AB Tasty will generate a persistent ID for the user automatically
+      id: ([1e7, -1e3, -4e3, -8e3, -1e11].join('') // Join the numbers to form a string
+        .replace(/[018]/g, c => {
+          const num = parseInt(c, 10); // Ensure 'c' is treated as a number
+          return (num ^ Math.random() * 16 >> num / 4).toString(16);
+        })),
       hasConsented: true, // This is required
       context: {
         user: "returning"

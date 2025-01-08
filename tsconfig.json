@@ -1,7 +1,13 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
+   "jsx": "react-jsx",  // Enable JSX support
+    "target": "es5",  // You can set the target to es5 or esnext depending on your needs
+    "module": "commonjs",  // CommonJS for Node.js or "esnext" for modern modules
+    "moduleResolution": "node",
+    "strict": true,  // Optional: Enables strict type checking
+    "esModuleInterop": true,  // Optional: Ensures compatibility with CommonJS modules
+    "skipLibCheck": true,  // Optional: Skips type checking of declaration files
     "paths": {
       "@/*": [
         "./*"

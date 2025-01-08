@@ -1,5 +1,5 @@
-import { StyleSheet, Image, Platform } from 'react-native';
-
+import { useState } from 'react';
+import { StyleSheet, Image, Platform, TextInput, Button, View } from 'react-native';
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -8,6 +8,24 @@ import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 
 export default function TabTwoScreen() {
+  const [key, setKey] = useState('');
+  const [value, setValue] = useState('');
+  const [isKeyEntered, setIsKeyEntered] = useState(false);
+  const [isValueEntered, setIsValueEntered] = useState(false);
+
+  const handleKeySubmit = () => {
+    if (key.trim()) {
+      setIsKeyEntered(true);
+    }
+  };
+
+  const handleValueSubmit = () => {
+    if (value.trim()) {
+      console.log(`Key: ${key}, Value: ${value}`);
+      setIsValueEntered(true);
+    }
+  };
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -20,9 +38,36 @@ export default function TabTwoScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
+        <ThemedText type="title">Context</ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
+      <ThemedText>To apply a user context and activate a flag, first type a key (e.g., 'userRole') in the input field and press Send. Then, enter a value (e.g., 'admin') in the second input that appears and press Send again. This will log the key and value to apply the context and activate the flag.</ThemedText>
+
+      {/* Key input */}
+      {!isKeyEntered && (
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Type a key"
+            value={key}
+            onChangeText={setKey}
+          />
+          <Button title="Send" onPress={handleKeySubmit} />
+        </View>
+      )}
+
+      {/* Value input */}
+      {isKeyEntered && !isValueEntered && (
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="Type a value"
+            value={value}
+            onChangeText={setValue}
+          />
+          <Button title="Send" onPress={handleValueSubmit} />
+        </View>
+      )}
+
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
@@ -37,6 +82,8 @@ export default function TabTwoScreen() {
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
+
+      {/* Other collapsible sections */}
       <Collapsible title="Android, iOS, and web support">
         <ThemedText>
           You can open this project on Android, iOS, and the web. To open the web version, press{' '}
@@ -105,5 +152,13 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+  },
+  inputContainer: {
+    marginVertical: 10,
+  },
+  input: {
+    borderWidth: 1,
+    padding: 8,
+    marginBottom: 10,
   },
 });
