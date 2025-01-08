@@ -6,12 +6,15 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
+import { useFlagship } from "@flagship.io/react-sdk";
 
 export default function TabTwoScreen() {
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
   const [isKeyEntered, setIsKeyEntered] = useState(false);
   const [isValueEntered, setIsValueEntered] = useState(false);
+  const [isContextSubmitted, setIsContextSubmitted] = useState(false);
+  const { updateContext } = useFlagship();
 
   const handleKeySubmit = () => {
     if (key.trim()) {
@@ -23,6 +26,17 @@ export default function TabTwoScreen() {
     if (value.trim()) {
       console.log(`Key: ${key}, Value: ${value}`);
       setIsValueEntered(true);
+      setIsContextSubmitted(true);
+      updateContext({ [key]: value });
+
+      // Hide the inputs and button, and then bring them back after 4000ms
+      setTimeout(() => {
+        setIsKeyEntered(false);
+        setIsValueEntered(false);
+        setKey('');
+        setValue('');
+        setIsContextSubmitted(false);
+      }, 4000); // 4000ms = 4 seconds
     }
   };
 
@@ -40,10 +54,13 @@ export default function TabTwoScreen() {
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Context</ThemedText>
       </ThemedView>
-      <ThemedText>To apply a user context and activate a flag, first type a key (e.g., 'userRole') in the input field and press Send. Then, enter a value (e.g., 'admin') in the second input that appears and press Send again. This will log the key and value to apply the context and activate the flag.</ThemedText>
+      <ThemedText>To activate a flag, first type a key (e.g., 'userRole') in the input field and press Send. Then, enter a value (e.g., 'admin') and press Send again.</ThemedText>
+
+      {/* Display the context submission message */}
+      {isContextSubmitted && <ThemedText>Context is submitted!</ThemedText>}
 
       {/* Key input */}
-      {!isKeyEntered && (
+      {!isKeyEntered && !isContextSubmitted && (
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -56,7 +73,7 @@ export default function TabTwoScreen() {
       )}
 
       {/* Value input */}
-      {isKeyEntered && !isValueEntered && (
+      {isKeyEntered && !isValueEntered && !isContextSubmitted && (
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
@@ -68,7 +85,7 @@ export default function TabTwoScreen() {
         </View>
       )}
 
-      <Collapsible title="File-based routing">
+      {/* <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
           <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
@@ -81,16 +98,16 @@ export default function TabTwoScreen() {
         <ExternalLink href="https://docs.expo.dev/router/introduction">
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
-      </Collapsible>
+      </Collapsible> */}
 
       {/* Other collapsible sections */}
-      <Collapsible title="Android, iOS, and web support">
+      {/* <Collapsible title="Android, iOS, and web support">
         <ThemedText>
           You can open this project on Android, iOS, and the web. To open the web version, press{' '}
           <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
         </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
+      </Collapsible> */}
+      {/* <Collapsible title="Images">
         <ThemedText>
           For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
           <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
@@ -100,8 +117,8 @@ export default function TabTwoScreen() {
         <ExternalLink href="https://reactnative.dev/docs/images">
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
+      </Collapsible> */}
+      {/* <Collapsible title="Custom fonts">
         <ThemedText>
           Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
           <ThemedText style={{ fontFamily: 'SpaceMono' }}>
@@ -111,8 +128,8 @@ export default function TabTwoScreen() {
         <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
+      </Collapsible> */}
+      {/* <Collapsible title="Light and dark mode components">
         <ThemedText>
           This template has light and dark mode support. The{' '}
           <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
@@ -121,8 +138,8 @@ export default function TabTwoScreen() {
         <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
+      </Collapsible> */}
+      {/* <Collapsible title="Animations">
         <ThemedText>
           This template includes an example of an animated component. The{' '}
           <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
@@ -137,7 +154,7 @@ export default function TabTwoScreen() {
             </ThemedText>
           ),
         })}
-      </Collapsible>
+      </Collapsible> */}
     </ParallaxScrollView>
   );
 }

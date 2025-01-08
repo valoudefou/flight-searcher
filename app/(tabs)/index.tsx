@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, ActivityIndicator, Keyboard } from 'react-native';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useFsFlag } from "@flagship.io/react-native-sdk";
@@ -18,7 +18,7 @@ const FlightSearch = () => {
   const flagSeatRemainingVal = useFsFlag("flagSeatRemaining");
   const flagSeatRemaining = flagSeatRemainingVal.getValue(false);
   const flagSeatRemainingMessageColorVal = useFsFlag("flagSeatRemainingMessageColor");
-  const flagSeatRemainingMessageColor = flagSeatRemainingMessageColorVal.getValue('blue');
+  const flagSeatRemainingMessageColor = flagSeatRemainingMessageColorVal.getValue('#2196f3');
   const flagPercentageDiscountVal = useFsFlag("flagPercentageDiscount");
   const flagPercentageDiscount = flagPercentageDiscountVal.getValue(0);
 
@@ -113,15 +113,11 @@ const FlightSearch = () => {
           )}
         />
         <TouchableOpacity
-          style={[styles.searchAgainButton, { 
-            borderColor: flagSeatRemainingMessageColor,
-          }]}
+          style={[styles.searchAgainButton]}
           onPress={handleSearchAgain}
         >
           <Text    
-            style={[styles.searchAgainButtonText, { 
-              color: flagSeatRemainingMessageColor,
-            }]}>Search Again
+            style={[styles.searchAgainButtonText]}>Search Again
           </Text>
         </TouchableOpacity>
       </View>
@@ -246,14 +242,14 @@ const styles = StyleSheet.create({
   },
   searchAgainButton: {
     marginTop: 20,
+    marginBottom: 150,
     padding: 10,
-    borderWidth: 1,
-    borderRadius: 4,
     alignItems: 'center',
   },
   searchAgainButtonText: {
-    color: '#007bff',
     fontSize: 18,
+    color: "#007bff",
+    fontWeight: 400
   },
   flightItem: {
     marginBottom: 20,
