@@ -9,18 +9,6 @@ Welcome to the Flight Searcher repository! This app allows users to search for f
 ### Clone the Repository
 Follow these instructions to clone the repository on your local machine.
 
-#### On MacOS
-1. Open your terminal.
-2. Run the following command:
-   ```bash
-   git clone https://github.com/valoudefou/flight-searcher.git
-   ```
-3. Navigate to the project directory:
-   ```bash
-   cd flight-searcher
-   ```
-
-#### On Windows
 1. Open Command Prompt or PowerShell.
 2. Run the following command:
    ```bash
