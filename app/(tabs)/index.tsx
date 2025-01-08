@@ -28,7 +28,7 @@ const FlightSearch = () => {
     { id: 5, airline: 'KLM', price: '$1000', departure: '2025-01-04 09:00 PM', return: '2025-01-06 08:00 PM' },
     { id: 6, airline: 'Germanwings', price: '$1300', departure: '2025-01-04 10:00 PM', return: '2025-01-06 08:00 PM' },
   ];
-
+  console.log('hello');
   const handleSearch = () => {
     if (!origin || !destination || !outboundDate || !returnDate) {
       alert('Please fill all the fields');
