@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   searchAgainButtonText: {
-    fontSize: 18,
+    fontSize: 17,
     color: "#007bff",
     fontWeight: 400
   },

@@ -11,10 +11,12 @@ Follow these instructions to clone the repository on your local machine.
 
 1. Open Command Prompt or PowerShell.
 2. Run the following command:
+
    ```bash
    git clone https://github.com/valoudefou/flight-searcher.git
    ```
 3. Navigate to the project directory:
+
    ```bash
    cd flight-searcher
    ```
@@ -45,7 +47,7 @@ Now you can see the app live on your mobile device!
 |------------------------------|---------------------------------------------------|
 | `flagSeatRemaining`          | Any INTEGER value (e.g., 2, 15, 24)         |
 | `flagSeatRemainingMessageColor` | STRING values: `green`, `black`, `orange`, `red` |
-| `flagPercentageDiscount`     | Any INTEGER value (e.g., 0.9 for 10% off, 0.8, 0.7)          |
+| `flagPercentageDiscount`     | Any INTEGER value (e.g., 0.9 for 10% OFF, 0.8, 0.7)          |
 
 ## Enjoy!
 
