@@ -49,6 +49,7 @@ Now you can see the app live on your mobile device!
 | `flagSeatRemainingMessageColor` | STRING values: `green`, `black`, `orange`, `red` |
 | `flagPercentageDiscount`     | Any INTEGER value (e.g., `0.9` for 10% OFF, `0.8`, `0.7`)          |
 | `flagDiscountSeatLeftHigherThan`     | Any INTEGER value (e.g., `10`, `20`, `50`)          |
+| `flagDiscountIfPriceHigherThan`     | Any INTEGER value (e.g., `500`, `1000`, `2000`)          |
 
 ## Enjoy!
 

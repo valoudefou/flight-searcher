@@ -24,6 +24,8 @@ const FlightSearch = () => {
   const flagPercentageDiscount = flagPercentageDiscountVal.getValue(0);
   const flagDiscountSeatLeftHigherThanVal = useFsFlag("flagDiscountSeatLeftHigherThan");
   const flagDiscountSeatLeftHigherThan = flagDiscountSeatLeftHigherThanVal.getValue(2);
+  const flagDiscountIfPriceHigherThanVal = useFsFlag("flagDiscountIfPriceHigherThan");
+  const flagDiscountIfPriceHigherThan = flagDiscountIfPriceHigherThanVal.getValue(0);
 
   const [origin, setOrigin] = useState('LON');
   const [destination, setDestination] = useState('PAR');
@@ -54,11 +56,16 @@ const FlightSearch = () => {
     setTimeout(() => {
       if (flagSeatRemaining && flagPercentageDiscount !== 0) {
         const updatedFlightData = fakeFlightData.map((flight) => {
-          if (flight.remainingSeats && flight.remainingSeats >= flagDiscountSeatLeftHigherThan) {
+          const priceNumber = parseFloat(flight.price.replace('$', '')); // Convert string price to a number
+          if (
+            flight.remainingSeats &&
+            flight.remainingSeats >= flagDiscountSeatLeftHigherThan &&
+            priceNumber >= flagDiscountIfPriceHigherThan
+          ) {
             const { shouldShowDiscount } = calculateDiscountedPrice(flight.price, flagPercentageDiscount);
-            return { 
+            return {
               ...flight,
-              discounted: shouldShowDiscount 
+              discounted: shouldShowDiscount,
             };
           }
           return flight;
