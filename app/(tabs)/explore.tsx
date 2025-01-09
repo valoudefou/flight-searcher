@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { StyleSheet, TextInput, Button, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { router } from 'expo-router'; // Changed this import
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -26,14 +27,17 @@ export default function TabTwoScreen() {
     console.log(`Key: ${key}, Value: ${value}`);
     setIsContextSubmitted(true);
     updateContext({ [key]: value });
+    Keyboard.dismiss();
 
-    // Reset inputs and hide the message after 4000ms
+    // Navigate to Home tab using expo-router
+    router.replace('/');
+
+    // Reset inputs and state after delay
     setTimeout(() => {
       setKey('');
       setValue('');
       setIsContextSubmitted(false);
     }, 4000);
-    Keyboard.dismiss(); // Dismiss the keyboard after submission
   };
 
   return (
@@ -53,10 +57,8 @@ export default function TabTwoScreen() {
         </ThemedView>
         <ThemedText>To activate a flag, type a key and value, then press Send.</ThemedText>
 
-        {/* Display the context submission message */}
         {isContextSubmitted && <ThemedText>Context is submitted!</ThemedText>}
 
-        {/* Input fields and Send button */}
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.input}
