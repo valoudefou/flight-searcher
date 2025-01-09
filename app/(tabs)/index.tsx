@@ -10,8 +10,9 @@ interface Flight {
   price: string;
   departure: string;
   return: string;
-  remainingSeats?: number;  // optional property
-  discounted?: boolean; // optional flag for discounted price
+  remainingSeats?: number;
+  discounted?: boolean;
+  originalPrice?: string; // Add this line
 }
 
 const FlightSearch = () => {
@@ -45,29 +46,53 @@ const FlightSearch = () => {
       alert('Please fill all the fields');
       return;
     }
-
-    Keyboard.dismiss(); // Hide the keyboard
+  
+    Keyboard.dismiss();
     setLoading(true);
     setTimeout(() => {
-      if (flagSeatRemaining && flagPercentageDiscount !== 0) { // Only apply discount if flagSeatLeft is true
+      if (flagSeatRemaining && flagPercentageDiscount !== 0) {
         const updatedFlightData = fakeFlightData.map((flight) => {
           if (flight.remainingSeats && flight.remainingSeats <= 2) {
-            const discountedPrice = parseFloat(flight.price.slice(1)) * flagPercentageDiscount; // Apply discount
-            return { ...flight, price: `$${discountedPrice.toFixed(2)}`, discounted: true };
+            const { shouldShowDiscount } = calculateDiscountedPrice(flight.price, flagPercentageDiscount);
+            return { 
+              ...flight,
+              discounted: shouldShowDiscount 
+            };
           }
           return flight;
         });
         setFlightData(updatedFlightData);
       } else {
-        setFlightData(fakeFlightData); // No discount applied if flagSeatLeft is false
+        setFlightData(fakeFlightData);
       }
       setLoading(false);
     }, 1000);
-  };
+  };  
 
   const handleSearchAgain = () => {
     setFlightData([]);
   };
+
+  const calculateDiscountedPrice = (originalPrice: string, discountFactor: number): {
+    shouldShowDiscount: boolean;
+    price: string;
+  } => {
+    const originalAmount = parseFloat(originalPrice.slice(1));
+    const discountedAmount = originalAmount * discountFactor;
+    
+    // If discounted amount is 0, return original price with flag to not show discount
+    if (discountedAmount === 0) {
+      return {
+        shouldShowDiscount: false,
+        price: originalPrice
+      };
+    }
+    
+    return {
+      shouldShowDiscount: true,
+      price: `$${discountedAmount.toFixed(2)}`
+    };
+  };  
 
   const onDateChange = (event: DateTimePickerEvent, selectedDate: Date | undefined, type: string) => {
     const currentDate = selectedDate || new Date();
@@ -86,31 +111,37 @@ const FlightSearch = () => {
         <FlatList
           data={flightData}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.flightItem}>
-              <Text style={styles.flightTitle}>{item.airline}</Text>
-
-              <View style={styles.priceContainer}>
-                {item.discounted && (
-                  <Text style={[styles.flightPrice, styles.strikeThrough]}>
-                    { item.price }
+          renderItem={({ item }) => {
+            const discountResult = item.discounted 
+              ? calculateDiscountedPrice(item.price, flagPercentageDiscount)
+              : { shouldShowDiscount: false, price: item.price };
+          
+            return (
+              <View style={styles.flightItem}>
+                <Text style={styles.flightTitle}>{item.airline}</Text>
+          
+                <View style={styles.priceContainer}>
+                  {discountResult.shouldShowDiscount && (
+                    <Text style={[styles.flightPrice, styles.strikeThrough]}>
+                      {item.price}
+                    </Text>
+                  )}
+                  <Text style={styles.flightPrice}>
+                    {discountResult.price}
+                  </Text>
+                </View>
+          
+                {flagPercentageDiscount !== 0 && item.remainingSeats && item.remainingSeats <= 2 && discountResult.shouldShowDiscount && (
+                  <Text style={[styles.seatsLeftLabel, { color: flagSeatRemainingMessageColor }]}>
+                    {item.remainingSeats} seats left at this price!
                   </Text>
                 )}
-                <Text style={styles.flightPrice}>
-                  {item.discounted ? `$${(parseFloat(item.price.slice(1)) * flagPercentageDiscount).toFixed(2)}` : item.price}
-                </Text>
+          
+                <Text style={styles.flightDetails}>Departure: {item.departure}</Text>
+                <Text style={styles.flightDetails}>Return: {item.return}</Text>
               </View>
-
-              {flagPercentageDiscount !== 0 && item.remainingSeats && item.remainingSeats <= 2 && (
-                <Text style={[styles.seatsLeftLabel, { color: flagSeatRemainingMessageColor }]}>
-                  {item.remainingSeats} seats left at this price!
-                </Text>
-              )}
-
-              <Text style={styles.flightDetails}>Departure: {item.departure}</Text>
-              <Text style={styles.flightDetails}>Return: {item.return}</Text>
-            </View>
-          )}
+            );
+          }}                  
         />
         <TouchableOpacity
           style={[styles.searchAgainButton]}
@@ -242,7 +273,7 @@ const styles = StyleSheet.create({
   },
   searchAgainButton: {
     marginTop: 30,
-    marginBottom: 150,
+    marginBottom: 120,
     padding: 10,
     alignItems: 'center',
   },
