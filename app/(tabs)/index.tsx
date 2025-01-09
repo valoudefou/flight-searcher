@@ -22,6 +22,8 @@ const FlightSearch = () => {
   const flagSeatRemainingMessageColor = flagSeatRemainingMessageColorVal.getValue('#2196f3');
   const flagPercentageDiscountVal = useFsFlag("flagPercentageDiscount");
   const flagPercentageDiscount = flagPercentageDiscountVal.getValue(0);
+  const flagDiscountIfSeatLeftLessThanVal = useFsFlag("flagDiscountIfSeatLeftLessThan");
+  const flagDiscountIfSeatLeftLessThan = flagDiscountIfSeatLeftLessThanVal.getValue(2);
 
   const [origin, setOrigin] = useState('LON');
   const [destination, setDestination] = useState('PAR');
@@ -37,8 +39,8 @@ const FlightSearch = () => {
     { id: 2, airline: 'Air Canada', price: '$550', departure: '2025-01-04 02:00 PM', return: '2025-01-06 04:00 PM', remainingSeats: 7 },
     { id: 3, airline: 'Air France', price: '$600', departure: '2025-01-04 06:00 PM', return: '2025-01-06 08:00 PM', remainingSeats: 7 },
     { id: 4, airline: 'British Airways', price: '$800', departure: '2025-01-04 07:00 PM', return: '2025-01-06 08:00 PM', remainingSeats: 18 },
-    { id: 5, airline: 'KLM', price: '$1000', departure: '2025-01-04 09:00 PM', return: '2025-01-06 08:00 PM' },
-    { id: 6, airline: 'Germanwings', price: '$1300', departure: '2025-01-04 10:00 PM', return: '2025-01-06 08:00 PM' },
+    { id: 5, airline: 'KLM', price: '$1000', departure: '2025-01-04 09:00 PM', return: '2025-01-06 08:00 PM', remainingSeats: 5},
+    { id: 6, airline: 'Germanwings', price: '$1300', departure: '2025-01-04 10:00 PM', return: '2025-01-06 08:00 PM', remainingSeats: 10 },
   ];
 
   const handleSearch = () => {
@@ -52,7 +54,7 @@ const FlightSearch = () => {
     setTimeout(() => {
       if (flagSeatRemaining && flagPercentageDiscount !== 0) {
         const updatedFlightData = fakeFlightData.map((flight) => {
-          if (flight.remainingSeats && flight.remainingSeats <= 2) {
+          if (flight.remainingSeats && flight.remainingSeats <= flagDiscountIfSeatLeftLessThan) {
             const { shouldShowDiscount } = calculateDiscountedPrice(flight.price, flagPercentageDiscount);
             return { 
               ...flight,
@@ -131,7 +133,10 @@ const FlightSearch = () => {
                   </Text>
                 </View>
           
-                {flagPercentageDiscount !== 0 && item.remainingSeats && item.remainingSeats <= 2 && discountResult.shouldShowDiscount && (
+                {/* Only show remaining seats if there's a discount (strikethrough price) */}
+                {flagSeatRemaining && 
+                 item.remainingSeats && 
+                 discountResult.shouldShowDiscount && (
                   <Text style={[styles.seatsLeftLabel, { color: flagSeatRemainingMessageColor }]}>
                     {item.remainingSeats} seats left at this price!
                   </Text>
@@ -141,7 +146,7 @@ const FlightSearch = () => {
                 <Text style={styles.flightDetails}>Return: {item.return}</Text>
               </View>
             );
-          }}                  
+          }}                              
         />
         <TouchableOpacity
           style={[styles.searchAgainButton]}
@@ -241,7 +246,9 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     borderWidth: 1,
     marginBottom: 20,
-    paddingLeft: 10,
+    paddingTop: 25,
+    paddingBottom: 25,
+    paddingLeft: 20,
     borderRadius: 4,
   },
   dateContainer: {
@@ -266,6 +273,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 4,
     alignItems: 'center',
+    marginTop: 30,
   },
   searchButtonText: {
     color: '#fff',
