@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
   },
   searchButton: {
     backgroundColor: '#007bff',
-    padding: 10,
+    padding: 16,
     borderRadius: 4,
     alignItems: 'center',
   },
@@ -241,13 +241,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   searchAgainButton: {
-    marginTop: 20,
+    marginTop: 30,
     marginBottom: 150,
     padding: 10,
     alignItems: 'center',
   },
   searchAgainButtonText: {
-    fontSize: 17,
+    fontSize: 18,
     color: "#007bff",
     fontWeight: 400
   },
@@ -268,12 +268,13 @@ const styles = StyleSheet.create({
   },
   flightPrice: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '400',
+    color: '#007bff',
     marginRight: 10,
   },
   strikeThrough: {
     textDecorationLine: 'line-through',
-    color: '#d3d3d3',
+    color: '#a9a9a9',
   },
   seatsLeftLabel: {
     fontSize: 16,
