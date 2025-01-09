@@ -51,4 +51,4 @@ Now you can see the app live on your mobile device!
 
 ## Enjoy!
 
-Feel free to explore, contribute, and share your feedback. Happy coding! 🚀✈️
+Feel free to explore, contribute, and share your feedback. 🚀✈️
