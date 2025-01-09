@@ -45,9 +45,9 @@ Now you can see the app live on your mobile device!
 
 | Flag Key                     | Possible Values                                   |
 |------------------------------|---------------------------------------------------|
-| `flagSeatRemaining`          | Any INTEGER value (e.g., 2, 15, 24)         |
+| `flagSeatRemaining`          | Any INTEGER value (e.g., `2`, `15`, `24`)         |
 | `flagSeatRemainingMessageColor` | STRING values: `green`, `black`, `orange`, `red` |
-| `flagPercentageDiscount`     | Any INTEGER value (e.g., 0.9 for 10% OFF, 0.8, 0.7)          |
+| `flagPercentageDiscount`     | Any INTEGER value (e.g., `0.9` for 10% OFF, `0.8`, `0.7`)          |
 
 ## Enjoy!
 
