@@ -51,6 +51,8 @@ Now you can see the app live on your mobile device!
 | `flagSortByPrice`                | BOOLEAN to sort highest prices first `true` or `false` | micro |
 | `flagSortBySeatLeft`             | BOOLEAN to sort by most seats left first `true` or `false` | micro |
 
+The AB Tasty interface allows you to easily configure flags and structure a JSON response with various data types, including INTEGER, STRING, BOOLEAN, ARRAY, and OBJECT.
+
 <img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/flags.png" alt="AB Tasty interface" width="950"/>
 
 ### Explore
