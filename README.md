@@ -55,7 +55,7 @@ Now you can see the app live on your mobile device!
 
 ## Usage
 
-<img src="https://s1.ezgif.com/tmp/ezgif-1-3504d91ad3.gif" alt="GIF showing a demo of the app" width="450" loading="lazy" />
+<img src="https://files.slack.com/files-pri/T02HSMHJ5-F0881D8M44D/screenrecording_01-10-202512-01-35_1-ezgif.com-video-to-gif-converter.gif?is_viewed=1" alt="GIF showing a demo of the app" width="450" loading="lazy" />
 
 In this section, you can explain how to use the application or widget. If there is a specific flow or step that users need to follow, it should be outlined here. 
 
