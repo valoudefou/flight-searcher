@@ -4,9 +4,7 @@
 
 Welcome to the Flight Searcher repository! This app lets users search for flights by departure city, destination, and travel date, built with React Native and Expo.
 
-## Getting Started
-
-### Clone the Repository
+## Clone the Repository
 Follow these instructions to clone the repository on your local machine.
 
 1. Open Command Prompt or PowerShell.
@@ -21,7 +19,7 @@ Follow these instructions to clone the repository on your local machine.
    cd flight-searcher
    ```
 
-### Preview the App on Your Mobile Phone
+## Preview the App on Your Mobile Phone
 This app is built with Expo, which makes it easy to preview your React Native app on Android and iOS devices.
 
 1. Install the Expo Go app on your mobile phone:
@@ -41,6 +39,8 @@ This app is built with Expo, which makes it easy to preview your React Native ap
 
 Now you can see the app live on your mobile device!
 
+## Configure
+
 | Flag Key                         | Values                                        | Scope |
 |----------------------------------|--------------------------------------------------------|-------|
 | `flagSeatRemaining`              | BOOLEAN to display the feature `true` or `false`       | macro |
@@ -55,7 +55,7 @@ The AB Tasty interface allows you to easily configure flags and structure a JSON
 
 <img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/flags.png" alt="AB Tasty interface" width="950"/>
 
-### Explore
+## Explore
 
 To activate the flags configured in the AB Tasty trial account, the user's context must be incorporated under the "Explore" section. Currently, the flags will only be triggered if the user meets the following targeting criteria:
 
@@ -67,7 +67,7 @@ The AB Tasty interface lets you activate flags based on user data types (INTEGER
 
 <img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/interface.png" alt="AB Tasty interface" width="950"/>
 
-## Usage
+## Demonstration
 
 <img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/anim.gif" alt="Application demo" width="400" />
 
