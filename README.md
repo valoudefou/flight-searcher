@@ -53,6 +53,22 @@ Now you can see the app live on your mobile device!
 | `flagSortByPrice`     | BOOLEAN to sort highest prices first `true` or `false`          |
 | `flagSortBySeatLeft`     | BOOLEAN to sort by most seats left first `true` or `false`          |
 
+# Usage
+
+![Gif Example](https://s1.ezgif.com/tmp/ezgif-1-3504d91ad3.gif)
+
+In this section, you can explain how to use the application or widget. If there is a specific flow or step that users need to follow, it should be outlined here. 
+
+### Explore
+
+The context of the user can be added under the "Explore" section. The possible contexts are as follows:
+
+- **App**: This can be set to `"Beta"` as a STRING, representing the version of the application.
+- **User**: This can be set to `"Returning"` as a STRING, indicating that the user has previously interacted with the application.
+- **Location**: This can be set to `"US"` as a STRING, denoting the geographic location of the user.
+
+By configuring these values, the app will tailor the experience to match the specific context of the user.
+
 ## Enjoy!
 
 Feel free to explore, contribute, and share your feedback. 🚀✈️
