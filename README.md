@@ -53,6 +53,8 @@ Now you can see the app live on your mobile device!
 | `flagSortByPrice`     | BOOLEAN to sort highest prices first `true` or `false`          |
 | `flagSortBySeatLeft`     | BOOLEAN to sort by most seats left first `true` or `false`          |
 
+<img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/flags.png" alt="AB Tasty interface" width="950"/>
+
 ### Explore
 
 To activate the flags configured in the AB Tasty trial account, the user's context must be incorporated under the "Explore" section. Currently, the flags will only be triggered if the user meets the following targeting criteria:
