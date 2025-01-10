@@ -2,7 +2,7 @@
 
 # Flight Searcher
 
-Welcome to the Flight Searcher repository! This app allows users to search for flights by specifying departure and destination cities, as well as the travel date. It's built with React Native and Expo.
+Welcome to the Flight Searcher repository! This app lets users search for flights by departure city, destination, and travel date, built with React Native and Expo.
 
 ## Getting Started
 
@@ -41,7 +41,7 @@ This app is built with Expo, which makes it easy to preview your React Native ap
 
 Now you can see the app live on your mobile device!
 
-## AB Tasty Flag Keys and Values
+### AB Tasty Flag Keys and Values
 
 | Flag Key                     | Possible Values                                   |
 |------------------------------|---------------------------------------------------|
@@ -53,21 +53,19 @@ Now you can see the app live on your mobile device!
 | `flagSortByPrice`     | BOOLEAN to sort highest prices first `true` or `false`          |
 | `flagSortBySeatLeft`     | BOOLEAN to sort by most seats left first `true` or `false`          |
 
-## Usage
-
-<img src="https://files.slack.com/files-pri/T02HSMHJ5-F0881D8M44D/screenrecording_01-10-202512-01-35_1-ezgif.com-video-to-gif-converter.gif?is_viewed=1" alt="GIF showing a demo of the app" width="450" loading="lazy" />
-
-In this section, you can explain how to use the application or widget. If there is a specific flow or step that users need to follow, it should be outlined here. 
-
 ### Explore
 
-The context of the user can be added under the "Explore" section. The possible contexts are as follows:
+The user's context must be added under the "Explore" section to activate the flags configured on the AB Tasty trial account above.
 
-- **App**: This can be set to `Beta` as a STRING, representing the version of the application.
-- **User**: This can be set to `Returning` as a STRING, indicating that the user has previously interacted with the application.
-- **Location**: This can be set to `US` as a STRING, denoting the geographic location of the user.
+- Key `App` can be set to `Beta`, representing the version of the application.
+- Key `User` can be set be set to `Returning`, indicating that the user has previously interacted with the application.
+- Key `Location` can be set to `US`, denoting the geographic location of the user.
 
-By configuring these values, the app will tailor the experience to match the specific context of the user.
+The AB Tasty interface lets you activate flags based on user data types (INTEGER, STRING, BOOLEAN) to personalize the app experience according to user context and business logic.
+
+## Usage
+
+<img src="https://s1.ezgif.com/tmp/ezgif-1-3504d91ad3.gif" alt="App demo" width="350" />
 
 ## Enjoy!
 
