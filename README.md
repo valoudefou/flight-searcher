@@ -55,7 +55,7 @@ Now you can see the app live on your mobile device!
 
 # Usage
 
-![Gif Example](https://s1.ezgif.com/tmp/ezgif-1-3504d91ad3.gif)
+<img src="https://s1.ezgif.com/tmp/ezgif-1-3504d91ad3.gif" alt="AB Tasty logo" width="350" loading="lazy" />
 
 In this section, you can explain how to use the application or widget. If there is a specific flow or step that users need to follow, it should be outlined here. 
 
