@@ -27,9 +27,9 @@ const FlightSearch = () => {
   const flagDiscountIfPriceHigherThanVal = useFsFlag("flagDiscountIfPriceHigherThan");
   const flagDiscountIfPriceHigherThan = flagDiscountIfPriceHigherThanVal.getValue(0);
   const flagSortByPriceVal = useFsFlag("flagSortByPrice");
-  const flagSortByPrice = flagSortByPriceVal.getValue(true);
+  const flagSortByPrice = flagSortByPriceVal.getValue(false);
   const flagSortBySeatLeftVal = useFsFlag("flagSortBySeatLeft");
-  const flagSortBySeatLeft = flagSortBySeatLeftVal.getValue(true);
+  const flagSortBySeatLeft = flagSortBySeatLeftVal.getValue(false);
 
   const [origin, setOrigin] = useState('LON');
   const [destination, setDestination] = useState('PAR');

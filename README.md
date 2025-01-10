@@ -50,6 +50,8 @@ Now you can see the app live on your mobile device!
 | `flagPercentageDiscount`     | Any INTEGER value (e.g., `0.9` for 10% OFF, `0.8`, `0.7`)          |
 | `flagDiscountSeatLeftHigherThan`     | Any INTEGER value (e.g., `10`, `20`, `50`)          |
 | `flagDiscountIfPriceHigherThan`     | Any INTEGER value (e.g., `500`, `1000`, `2000`)          |
+| `flagSortByPrice`     | BOOLEAN to sort highest prices first `true` or `false`          |
+| `flagSortBySeatLeft`     | BOOLEAN to sort by most seats left first `true` or `false`          |
 
 ## Enjoy!
 
