@@ -41,17 +41,15 @@ This app is built with Expo, which makes it easy to preview your React Native ap
 
 Now you can see the app live on your mobile device!
 
-### AB Tasty Flag Keys and Values
-
-| Flag Key                     | Possible Values                                   |
-|------------------------------|---------------------------------------------------|
-| `flagSeatRemaining`          | BOOLEAN to display the feature `true` or `false`         |
-| `flagSeatRemainingMessageColor` | STRING values: `green`, `black`, `orange`, `red` |
-| `flagPercentageDiscount`     | Any INTEGER value (e.g., `0.9` for 10% OFF, `0.8`, `0.7`)          |
-| `flagDiscountSeatLeftHigherThan`     | Any INTEGER value (e.g., `10`, `20`, `50`)          |
-| `flagDiscountIfPriceHigherThan`     | Any INTEGER value (e.g., `500`, `1000`, `2000`)          |
-| `flagSortByPrice`     | BOOLEAN to sort highest prices first `true` or `false`          |
-| `flagSortBySeatLeft`     | BOOLEAN to sort by most seats left first `true` or `false`          |
+| Flag Key                         | Values                                        | Scope |
+|----------------------------------|--------------------------------------------------------|-------|
+| `flagSeatRemaining`              | BOOLEAN to display the feature `true` or `false`       | macro |
+| `flagSeatRemainingMessageColor`  | STRING values: `green`, `black`, `orange`, `red`       | micro |
+| `flagPercentageDiscount`         | Any INTEGER value (e.g., `0.9` for 10% OFF, `0.8`, `0.7`) | micro |
+| `flagDiscountSeatLeftHigherThan` | Any INTEGER value (e.g., `10`, `20`, `50`)             | micro |
+| `flagDiscountIfPriceHigherThan`  | Any INTEGER value (e.g., `500`, `1000`, `2000`)        | micro |
+| `flagSortByPrice`                | BOOLEAN to sort highest prices first `true` or `false` | micro |
+| `flagSortBySeatLeft`             | BOOLEAN to sort by most seats left first `true` or `false` | micro |
 
 <img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/flags.png" alt="AB Tasty interface" width="950"/>
 
