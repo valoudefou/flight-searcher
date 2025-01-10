@@ -65,7 +65,7 @@ The AB Tasty interface lets you activate flags based on user data types (INTEGER
 
 ## Usage
 
-![Application demo](https://files.slack.com/files-pri/T02HSMHJ5-F08849V7QAW/app.gif)
+![Application demo](https://assets-manager.abtasty.com/2f3c5b5db5d285eb2d75105d868d855d/flight.gif)
 
 ## Enjoy!
 
