@@ -26,6 +26,10 @@ const FlightSearch = () => {
   const flagDiscountSeatLeftHigherThan = flagDiscountSeatLeftHigherThanVal.getValue(2);
   const flagDiscountIfPriceHigherThanVal = useFsFlag("flagDiscountIfPriceHigherThan");
   const flagDiscountIfPriceHigherThan = flagDiscountIfPriceHigherThanVal.getValue(0);
+  const flagSortByPriceVal = useFsFlag("flagSortByPrice");
+  const flagSortByPrice = flagSortByPriceVal.getValue(true);
+  const flagSortBySeatLeftVal = useFsFlag("flagSortBySeatLeft");
+  const flagSortBySeatLeft = flagSortBySeatLeftVal.getValue(true);
 
   const [origin, setOrigin] = useState('LON');
   const [destination, setDestination] = useState('PAR');
@@ -36,27 +40,37 @@ const FlightSearch = () => {
   const [showOutboundDatePicker, setShowOutboundDatePicker] = useState(true);
   const [showReturnDatePicker, setShowReturnDatePicker] = useState(true);
 
-  const fakeFlightData: Flight[] = [ // Added type annotation to fakeFlightData
-    { id: 1, airline: 'Ryanair', price: '$500', departure: '2025-01-04 10:00 AM', return: '2025-01-06 12:00 PM', remainingSeats: 2 },
-    { id: 2, airline: 'Air Canada', price: '$550', departure: '2025-01-04 02:00 PM', return: '2025-01-06 04:00 PM', remainingSeats: 7 },
-    { id: 3, airline: 'Air France', price: '$600', departure: '2025-01-04 06:00 PM', return: '2025-01-06 08:00 PM', remainingSeats: 7 },
-    { id: 4, airline: 'British Airways', price: '$800', departure: '2025-01-04 07:00 PM', return: '2025-01-06 08:00 PM', remainingSeats: 18 },
-    { id: 5, airline: 'KLM', price: '$1000', departure: '2025-01-04 09:00 PM', return: '2025-01-06 08:00 PM', remainingSeats: 5},
-    { id: 6, airline: 'Germanwings', price: '$1300', departure: '2025-01-04 10:00 PM', return: '2025-01-06 08:00 PM', remainingSeats: 10 },
-  ];
+const fakeFlightData: Flight[] = [
+  { id: 1, airline: 'Ryanair', price: '$450', departure: '2025-02-01 10:00 AM', return: '2025-02-03 12:00 PM', remainingSeats: 2 },
+  { id: 2, airline: 'Air Canada', price: '$520', departure: '2025-02-02 02:00 PM', return: '2025-02-04 04:00 PM', remainingSeats: 7 },
+  { id: 3, airline: 'Air France', price: '$580', departure: '2025-02-03 06:00 PM', return: '2025-02-05 08:00 PM', remainingSeats: 7 },
+  { id: 4, airline: 'British Airways', price: '$750', departure: '2025-02-04 07:00 PM', return: '2025-02-06 08:00 PM', remainingSeats: 18 },
+  { id: 5, airline: 'KLM', price: '$950', departure: '2025-02-05 09:00 PM', return: '2025-02-07 08:00 PM', remainingSeats: 5 },
+  { id: 6, airline: 'Germanwings', price: '$1250', departure: '2025-02-06 10:00 PM', return: '2025-02-08 08:00 PM', remainingSeats: 10 },
+  { id: 7, airline: 'Lufthansa', price: '$680', departure: '2025-02-07 08:00 AM', return: '2025-02-09 10:00 AM', remainingSeats: 15 },
+  { id: 8, airline: 'Emirates', price: '$1150', departure: '2025-02-08 11:00 AM', return: '2025-02-10 01:00 PM', remainingSeats: 8 },
+  { id: 9, airline: 'Qatar Airways', price: '$920', departure: '2025-02-09 03:00 PM', return: '2025-02-11 05:00 PM', remainingSeats: 12 },
+  { id: 10, airline: 'Singapore Airlines', price: '$1050', departure: '2025-02-10 06:00 PM', return: '2025-02-12 08:00 PM', remainingSeats: 20 },
+  { id: 11, airline: 'Delta Airlines', price: '$820', departure: '2025-02-11 09:00 AM', return: '2025-02-13 11:00 AM', remainingSeats: 6 },
+  { id: 12, airline: 'United Airlines', price: '$870', departure: '2025-02-12 12:00 PM', return: '2025-02-14 02:00 PM', remainingSeats: 9 }
+];
 
   const handleSearch = () => {
     if (!origin || !destination || !outboundDate || !returnDate) {
       alert('Please fill all the fields');
       return;
     }
-  
+
     Keyboard.dismiss();
     setLoading(true);
+
     setTimeout(() => {
+      let updatedFlightData = [...fakeFlightData];
+
+      // Apply discounts if relevant flags are enabled
       if (flagSeatRemaining && flagPercentageDiscount !== 0) {
-        const updatedFlightData = fakeFlightData.map((flight) => {
-          const priceNumber = parseFloat(flight.price.replace('$', '')); // Convert string price to a number
+        updatedFlightData = updatedFlightData.map((flight) => {
+          const priceNumber = parseFloat(flight.price.replace('$', ''));
           if (
             flight.remainingSeats &&
             flight.remainingSeats >= flagDiscountSeatLeftHigherThan &&
@@ -70,13 +84,22 @@ const FlightSearch = () => {
           }
           return flight;
         });
-        setFlightData(updatedFlightData);
-      } else {
-        setFlightData(fakeFlightData);
       }
+
+      // Sort by price if flagSortByPrice is enabled
+      if (flagSortByPrice) {
+        updatedFlightData.sort((a, b) => parseFloat(b.price.replace('$', '')) - parseFloat(a.price.replace('$', '')));
+      }
+
+      // Sort by remaining seats if flagSortBySeatLeft is enabled
+      if (flagSortBySeatLeft) {
+        updatedFlightData.sort((a, b) => (b.remainingSeats || 0) - (a.remainingSeats || 0));
+      }
+
+      setFlightData(updatedFlightData);
       setLoading(false);
     }, 1000);
-  };  
+  };
 
   const handleSearchAgain = () => {
     setFlightData([]);
