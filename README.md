@@ -59,11 +59,18 @@ Use case: when a `returning` user is browsing, the remaining seats for a flight 
 
 <img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/flags.png" alt="AB Tasty interface" width="950"/>
 
-## Explore
+## Targeting
 
 To activate this scenario, the user's context must be incorporated under the "Explore" tab of the app. Currently, the flags will only be triggered if the user meets the following targeting criteria:
 
-- Key `Session` can be set be set to `Returning`, hypothetically indicating that the user has previously interacted with the application.
+- Key `Session` can be set be set to `Returning`, which hypothetically indicates that the user has interacted with the application previously, effectively mimicking the data passed to AB Tasty in the background:
+
+```javascript
+context: {
+  [INTERNET_CONNECTION]: "5g",
+  Session: "Returning",
+}
+```
 
 The AB Tasty interface lets you activate flags based on user data types (INTEGER, STRING, BOOLEAN) to personalize the app experience according to the user behavior.
 
