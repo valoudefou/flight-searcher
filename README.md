@@ -55,7 +55,7 @@ The AB Tasty interface allows you to easily configure flags and structure a JSON
 
 ## Scenario 1
 
-Use case: when a returning user is browsing, the remaining seats for a flight are displayed in red. A 20% discount is applied, and the original price is struck through. Additionally, the results are sorted by the number of seats remaining. This approach is designed to increase conversion rates by creating a sense of urgency for returning users who are close to convert.
+Use case: when a `returning` user is browsing, the remaining seats for a flight are displayed in red. A 20% discount is applied, and the original price is struck through. Additionally, the results are sorted by the number of seats remaining. This approach is designed to increase conversion rates by creating a sense of urgency:
 
 <img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/flags.png" alt="AB Tasty interface" width="950"/>
 
