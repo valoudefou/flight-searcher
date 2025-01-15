@@ -59,9 +59,7 @@ The AB Tasty interface allows you to easily configure flags and structure a JSON
 
 To activate the flags configured in the AB Tasty trial account, the user's context must be incorporated under the "Explore" section. Currently, the flags will only be triggered if the user meets the following targeting criteria:
 
-- Key `App` can be set to `Beta`, representing an hypothetical application version to serve a flag.
-- Key `User` can be set be set to `Returning`, hypothetically indicating that the user has previously interacted with the application.
-- Key `Location` can be set to `US`, denoting the geographic location of the user.
+- Key `Session` can be set be set to `Returning`, hypothetically indicating that the user has previously interacted with the application.
 
 The AB Tasty interface lets you activate flags based on user data types (INTEGER, STRING, BOOLEAN) to personalize the app experience according to user context and business logic.
 
