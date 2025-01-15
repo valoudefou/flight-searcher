@@ -5,7 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-import { FlagshipProvider } from '@flagship.io/react-native-sdk';
+import { FlagshipProvider, INTERNET_CONNECTION } from '@flagship.io/react-native-sdk';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -39,7 +39,8 @@ export default function RootLayout() {
         })),
       hasConsented: true, // This is required
       context: {
-        user: "returning"
+        [INTERNET_CONNECTION]: "5g",
+        // User context passed from the Explore tab
       },
     }}
     >

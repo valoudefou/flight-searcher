@@ -12,6 +12,7 @@ export default function TabTwoScreen() {
   const [value, setValue] = useState('');
   const [isContextSubmitted, setIsContextSubmitted] = useState(false);
   const { updateContext } = useFlagship();
+  const { clearContext } = useFlagship();
 
   const handleSubmit = () => {
     if (!key.trim()) {
@@ -24,9 +25,10 @@ export default function TabTwoScreen() {
       return;
     }
 
+    clearContext();
     console.log(`Key: ${key}, Value: ${value}`);
     setIsContextSubmitted(true);
-    updateContext({ [key]: value });
+    updateContext({ [key]: value }); // Updates the Flagship context
     Keyboard.dismiss();
 
     // Navigate to Home tab using expo-router
