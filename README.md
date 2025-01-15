@@ -2,7 +2,7 @@
 
 # Flight Searcher
 
-Welcome to the Flight Searcher repository! This app lets users search for flights by departure city, destination, and travel date, built with React Native and Expo.
+Welcome to the Flight Searcher repository! This app demonstrates the power of feature flags by enabling the simultaneous experimentation of multiple business logic variations. By personalizing search result algorithms based on user behavior, we aim to optimize the user experience, ultimately boosting conversion rates and driving revenue growth.
 
 ## Clone the Repository
 Follow these instructions to clone the repository on your local machine.
@@ -52,6 +52,10 @@ Now you can see the app live on your mobile device!
 | `flagSortBySeatLeft`             | BOOLEAN to sort by most seats left first `true` or `false` | micro |
 
 The AB Tasty interface allows you to easily configure flags and structure a JSON response with various data types, including INTEGER, STRING, BOOLEAN, ARRAY, and OBJECT.
+
+## Scenario 1
+
+Use case: when a returning user is browsing, the remaining seats for a flight are displayed in red. A 20% discount is applied, and the original price is struck through. Additionally, the results are sorted by the number of seats remaining. This approach is designed to increase conversion rates by creating a sense of urgency for returning users who are close to convert.
 
 <img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/flags.png" alt="AB Tasty interface" width="950"/>
 
