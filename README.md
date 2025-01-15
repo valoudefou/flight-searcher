@@ -65,7 +65,7 @@ To activate the flags configured in the AB Tasty trial account, the user's conte
 
 The AB Tasty interface lets you activate flags based on user data types (INTEGER, STRING, BOOLEAN) to personalize the app experience according to user context and business logic.
 
-<img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/interface.png" alt="AB Tasty interface" width="950"/>
+<img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/targeting.png" alt="AB Tasty interface" width="950"/>
 
 ## Demonstration
 
