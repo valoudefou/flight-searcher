@@ -61,11 +61,11 @@ Use case: when a `returning` user is browsing, the remaining seats for a flight 
 
 ## Explore
 
-To activate the flags configured in the AB Tasty trial account, the user's context must be incorporated under the "Explore" tab of the app. Currently, the flags will only be triggered if the user meets the following targeting criteria:
+To activate this scenario, the user's context must be incorporated under the "Explore" tab of the app. Currently, the flags will only be triggered if the user meets the following targeting criteria:
 
 - Key `Session` can be set be set to `Returning`, hypothetically indicating that the user has previously interacted with the application.
 
-The AB Tasty interface lets you activate flags based on user data types (INTEGER, STRING, BOOLEAN) to personalize the app experience according to user context and business logic.
+The AB Tasty interface lets you activate flags based on user data types (INTEGER, STRING, BOOLEAN) to personalize the app experience according to the user behavior.
 
 <img src="https://assets-manager.abtasty.com/1ceff369b6cd9aceaa9ee318e6498167/targeting.png" alt="AB Tasty interface" width="950"/>
 
