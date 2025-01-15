@@ -57,7 +57,7 @@ The AB Tasty interface allows you to easily configure flags and structure a JSON
 
 ## Explore
 
-To activate the flags configured in the AB Tasty trial account, the user's context must be incorporated under the "Explore" section. Currently, the flags will only be triggered if the user meets the following targeting criteria:
+To activate the flags configured in the AB Tasty trial account, the user's context must be incorporated under the "Explore" tab of the app. Currently, the flags will only be triggered if the user meets the following targeting criteria:
 
 - Key `Session` can be set be set to `Returning`, hypothetically indicating that the user has previously interacted with the application.
 
