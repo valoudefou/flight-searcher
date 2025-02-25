@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StyleSheet, TextInput, Button, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
-import { router } from 'expo-router'; // Changed this import
+import { router } from 'expo-router';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -11,8 +11,23 @@ export default function TabTwoScreen() {
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
   const [isContextSubmitted, setIsContextSubmitted] = useState(false);
-  const { updateContext } = useFlagship();
-  const { clearContext } = useFlagship();
+  const [ip, setIp] = useState('Fetching...');
+
+  const { updateContext, clearContext } = useFlagship();
+
+  useEffect(() => {
+    const fetchIP = async () => {
+      try {
+        const response = await fetch('https://api64.ipify.org?format=json');
+        const data = await response.json();
+        setIp(data.ip);
+      } catch (error) {
+        setIp('Error fetching IP');
+      }
+    };
+
+    fetchIP();
+  }, []);
 
   const handleSubmit = () => {
     if (!key.trim()) {
@@ -28,13 +43,11 @@ export default function TabTwoScreen() {
     clearContext();
     console.log(`Key: ${key}, Value: ${value}`);
     setIsContextSubmitted(true);
-    updateContext({ [key]: value }); // Updates the Flagship context
+    updateContext({ [key]: value });
     Keyboard.dismiss();
 
-    // Navigate to Home tab using expo-router
     router.replace('/');
 
-    // Reset inputs and state after delay
     setTimeout(() => {
       setKey('');
       setValue('');
@@ -54,6 +67,10 @@ export default function TabTwoScreen() {
             style={styles.headerImage}
           />
         }>
+
+        {/* IP address displayed at the top, aligned left */}
+        <ThemedText style={styles.ipText}>Your IP: {ip}</ThemedText>
+
         <ThemedView style={styles.titleContainer}>
           <ThemedText type="title">Context</ThemedText>
         </ThemedView>
@@ -91,6 +108,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     gap: 8,
+    marginTop: 10,
   },
   inputContainer: {
     marginVertical: 10,
@@ -101,5 +119,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 15,
     borderColor: '#999999',
+  },
+  ipText: {
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: 'left',
   },
 });

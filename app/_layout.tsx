@@ -29,8 +29,8 @@ export default function RootLayout() {
   
   return (
     <FlagshipProvider
-    envId="cimqt0uqvn36gba8e4b0"
-    apiKey="fzGFlVlcAWBjKJAAAXcPfSQcAHHQkqJekDprRisp"
+    envId="" // Add your envId
+    apiKey="" // Add your apiKey
     visitorData={{
       id: ([1e7, -1e3, -4e3, -8e3, -1e11].join('') // Join the numbers to form a string
         .replace(/[018]/g, c => {
