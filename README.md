@@ -31,7 +31,7 @@ This app is built with Expo, which makes it easy to preview your React Native ap
    npm install
    npm start
    ```
-   This will start the development server and show a QR code in the terminal or the Expo Developer Tools in your browser.
+   This will start the development server and display a QR code either in the terminal or in the Expo Developer Tools in your browser. Ensure that your mobile device is connected to the same wifi network as your local machine or laptop.
 
 3. Scan the QR code:
    - For Android: Open Expo Go and scan the QR code from your terminal or browser.
