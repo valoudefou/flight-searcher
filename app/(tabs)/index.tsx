@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet, ActivityIndicator, Keyboard } from 'react-native';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useFsFlag } from "@flagship.io/react-native-sdk";
+import 'react-native-reanimated';
+
 
 // Define the Flight interface
 interface Flight {
